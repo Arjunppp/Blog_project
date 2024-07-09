@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/styles.css">
+</head>
+<body>
+    <div class="home-main-div">
+        <div class="head-div">
+        <h1>Blogs</h1>
+        <a href="/admin">Admin Login</a>
+        </div>
+        <div class="home-sub-div">
+            <h4>User Login</h4>
+            <form action="/login" method="POST" id="login-form">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+                <label for="password">password</label>
+                <input type="password" name="password" id="password">
+                <button type="submit">Login</button>
+            </form>
+            <a href="/register">Sign Up</a>
+        </div>
+
+    </div>
+</body>
+</html>
