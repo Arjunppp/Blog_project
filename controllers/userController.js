@@ -44,7 +44,7 @@ async function handleLogin(req , res)
          let result = await comparePassword(password , user.password)
          if(result)
          {
-            let token = await generateToken(user);
+            let token =  generateToken(user);
             res.cookie('userId' ,token).redirect('/blog');
             
          }
