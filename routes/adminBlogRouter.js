@@ -1,13 +1,15 @@
 
 
 import express from 'express';
-import { handleAdminMainPage } from '../controllers/adminBlogController.js';
+import { handleAdminMainPage ,handleAdminLogOut } from '../controllers/adminBlogController.js';
 
 
 const adminBlogRouter = express.Router();
 
 
 adminBlogRouter.route('/' ).get(handleAdminMainPage);
+
+adminBlogRouter.route('/logout').get(handleAdminLogOut);
 
 
 
