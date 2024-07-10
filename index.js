@@ -1,6 +1,6 @@
 import express from 'express';
-import {  userRouter} from './routes/user-router.js';
-import { adminRouter } from './routes/admin-router.js';
+import {  userRouter} from './routes/userRouter.js';
+import { adminRouter } from './routes/adminRouter.js';
 import { dbConnection } from './connection.js';
 
 

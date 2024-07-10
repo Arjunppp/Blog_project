@@ -1,6 +1,6 @@
 async function handleAdmin(req ,res)
 {
-    res.render('admin-login');
+    res.render('adminLogin');
 
 }
 
