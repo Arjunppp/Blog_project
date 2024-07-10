@@ -6,7 +6,8 @@ import { dbConnection } from './connection.js';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import { userBlog } from './routes/userBlogs.js';
-
+import { adminBlogRouter } from './routes/adminBlogRouter.js';
+import { adminAuth } from './middlewares/adminAuthMiddleware.js';
 
 
 const port = process.env.PORT;
@@ -27,6 +28,9 @@ app.use('/' ,userRouter);
 app.use('/admin' , adminRouter);
 
 app.use('/blog' , userAuth , userBlog);
+
+
+app.use('/admin/blog' , adminAuth ,adminBlogRouter);    ///Add an middleware where others cant acess
 
 app.listen(port ,() => 
 {

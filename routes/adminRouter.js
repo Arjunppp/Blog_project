@@ -1,10 +1,12 @@
 import express from 'express';
-import { handleAdmin } from '../controllers/adminController.js';
+import { handleAdmin ,handleAdminLogin } from '../controllers/adminController.js';
 
 const adminRouter = express.Router();
 
 
 adminRouter.route('/').get(handleAdmin);
+
+adminRouter.route('/login').post(handleAdminLogin);
 
 
 
