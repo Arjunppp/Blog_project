@@ -24,6 +24,12 @@ async function registerUser(data)
 
 };
 
+async function getUserByUsername(name)
+{
+    let user = await User.findOne({username:name});
+    return user;
+
+}
 
 
-export {registerUser};
+export {registerUser , getUserByUsername};
