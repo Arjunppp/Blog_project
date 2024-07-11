@@ -10,6 +10,13 @@ body{
     padding: 10px;
 }
 
+.nav-bar a{
+    text-decoration: none;
+    background: black;
+    color: white;
+    padding: 5px;
+}
+
 .main-box
 {
     display: flex;
@@ -26,5 +33,6 @@ body{
 
 .content-box
 {
-    background-color: aliceblue;
+    background-color:cadetblue;
+    color: black;
 }

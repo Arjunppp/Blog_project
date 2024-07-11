@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../public/blogStyles.css">
 </head>
+
 <body>
-   <div class="nav-bar">
-    <a href="">View You Post</a>
-    <a href="/blog/post">Create Blog</a>
-    <a href="/blog/logout" >Logout</a>
-   </div>
+    <div class="nav-bar">
+        <% if (locals.UserId) { %>
+            <a href="/blog/viewMine">View Your Post</a>
+            <% } %>
+
+
+                <a href="/blog/post">Create Blog</a>
+                <a href="/blog/logout">Logout</a>
+    </div>
     <% if(locals.allBlog) { %>
-        <% locals.allBlog.forEach(each => { %>
+        <% locals.allBlog.forEach(each=> { %>
             <div class="main-box">
                 <div class="title-box">
-                    <h2><%= each.title %></h2> 
+                    <h2>
+                        <%= each.title %>
+                    </h2>
                 </div>
                 <div class="content-box">
-                    <h5><%= each.content %></h5>
+                    <h5>
+                        <%= each.content %>
+                    </h5>
                 </div>
             </div>
-        <% }) %>
-    <% } %>
-    
+            <% }) %>
+                <% } %>
+
 </body>
+
 </html>

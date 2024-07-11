@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/blogStyles.css">
+</head>
+<body>
+    <% if(locals.message) { %>
+        <h1><%= message  %></h1>
+        <% } %>
+        <% if(locals.myBlogs) { %>
+            <% locals.myBlogs.forEach(each=> { %>
+                <div class="main-box">
+                    <div class="title-box">
+                        <h2>
+                            <%= each.title %>
+                        </h2>
+                    </div>
+                    <div class="content-box">
+                        <h5>
+                            <%= each.content %>
+                        </h5>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } %>
+    
+</body>
+</html>

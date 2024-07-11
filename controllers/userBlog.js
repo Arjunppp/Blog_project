@@ -1,9 +1,9 @@
-import { createBlog ,getAllBlog } from "../services/userServices.js";
+import { createBlog ,getAllBlog ,getAllMyBlogs } from "../services/userServices.js";
 
 async function blogPage(req, res) {
     let allBlog = await getAllBlog();
-    console.log(allBlog);
-    res.render('blog', {allBlog});
+    const UserId = req.user._id;
+    res.render('blog', {allBlog ,UserId});
 };
 
 async function blogLogout(req, res) {
@@ -42,4 +42,20 @@ async function blogSave(req , res)
     }
 
 }
-export { blogPage, blogLogout ,blogGetCreate  ,blogSave}
+
+
+async function handleGetAllMyBlogs(req ,res)
+{
+    const userId = req.user._id;
+    const myBlogs = await getAllMyBlogs(userId);
+    if(!myBlogs)
+    {
+        res.render('myBlog' ,{message:"You have no Blogs to view"});
+    }
+    else{
+        res.render('myBlog', {myBlogs});
+    }
+
+    //create a service to get all the post from BLogs where user id is this
+}
+export { blogPage, blogLogout ,blogGetCreate  ,blogSave ,handleGetAllMyBlogs}

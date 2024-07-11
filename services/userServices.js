@@ -48,5 +48,12 @@ async function getAllBlog()
 {
     const allBlogs = await Blog.find({});
     return allBlogs;
+};
+
+
+async function getAllMyBlogs(userId)
+{
+    const myBlogs = await Blog.find({userId});
+    return myBlogs;
 }
-export {registerUser , getUserByUsername ,createBlog ,getAllBlog};
+export {registerUser , getUserByUsername ,createBlog ,getAllBlog ,getAllMyBlogs};
