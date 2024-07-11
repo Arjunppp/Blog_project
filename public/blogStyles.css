@@ -10,7 +10,7 @@ body{
     padding: 10px;
 }
 
-.nav-bar a{
+.nav-bar a , .optionButtons{
     text-decoration: none;
     background: black;
     color: white;
@@ -35,4 +35,7 @@ body{
 {
     background-color:cadetblue;
     color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

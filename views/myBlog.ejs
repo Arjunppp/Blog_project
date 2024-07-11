@@ -22,10 +22,16 @@
                         <h5>
                             <%= each.content %>
                         </h5>
+                        <div class="options">
+                            <a myBlogId="<%= each._id %>"  class="optionButtons" name="VIEW">View</a>
+                            <a myBlogId="<%= each._id %>"   class="optionButtons" name="EDIT">Edit</a>
+                            <a myBlogId="<%= each._id %>"  class="optionButtons" name="DELETE">Delete</a>
+                        </div>
                     </div>
+                   
                 </div>
                 <% }) %>
                     <% } %>
-    
+    <script src="../public/js/viewMyBlogs.js"></script>
 </body>
 </html>

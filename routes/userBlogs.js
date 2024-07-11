@@ -1,5 +1,5 @@
 import express from 'express';
-import { blogPage ,blogLogout ,blogGetCreate ,blogSave, handleGetAllMyBlogs } from '../controllers/userBlog.js';
+import { blogPage ,blogLogout ,blogGetCreate ,blogSave, handleGetAllMyBlogs ,handleDeleteBlog ,handleViewBlog } from '../controllers/userBlog.js';
 
 const userBlog  = express.Router();
 
@@ -13,6 +13,8 @@ userBlog.route('/post').get(blogGetCreate).post(blogSave)
 
 
 userBlog.route('/viewMine').get(handleGetAllMyBlogs);
+
+userBlog.route('/:id').delete(handleDeleteBlog).get(handleViewBlog);
 
 
 export {userBlog};

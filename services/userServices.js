@@ -56,4 +56,18 @@ async function getAllMyBlogs(userId)
     const myBlogs = await Blog.find({userId});
     return myBlogs;
 }
-export {registerUser , getUserByUsername ,createBlog ,getAllBlog ,getAllMyBlogs};
+
+
+async function getViewBLog( blogId )
+{
+    const requestedBlog = await Blog.find({_id:blogId});
+    return requestedBlog;
+}
+
+async function getDeleteBlog(blogId)
+{
+    let result = await Blog.findOneAndDelete({_id:blogId});
+    return result;
+}
+
+export {registerUser , getUserByUsername ,createBlog ,getAllBlog ,getAllMyBlogs , getViewBLog , getDeleteBlog};
