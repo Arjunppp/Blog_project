@@ -21,6 +21,22 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+const blogSchema = new mongoose.Schema({
+    userId:{
+        type:mongoose.Schema.Types.ObjectId ,
+        ref: 'User',
+        required:true
+    },
+    title:{
+        type:String,
+        required:true
+    },
+    content:{
+        type:String,
+        required:true
+    }
+})
 const User = mongoose.model('User', userSchema);
+const Blog = mongoose.model('Blog' , blogSchema);
 
-export { User };
+export { User , Blog };
