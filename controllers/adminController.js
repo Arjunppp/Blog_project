@@ -13,21 +13,12 @@ async function handleAdminLogin(req ,res)
     const userData = req.body;
   
     const user = await getUserByUsername(userData.username);
-    if(!user)
+    if(!user || user.role != 'ADMIN')
         {
-           res.redirect('/'); //redirect with message user not found
+           res.render('adminLogin' , {message:"Admin not found"}); 
         }
         else{
-           /*
-           1. comapre the old password and the hashed password
-           2.if match == true -- user is authenticated
-               2.1 if authenticated -- create an jwt token
-               2.2 render the blog page and send cookie as resposne.
-           3.if password is false
-               3.2 redirect to home page '/'
-               3.2 with password is wrong
-   
-             */
+          
             let result = await comparePassword(userData.password , user.password)
             if(result)
             {
@@ -36,7 +27,7 @@ async function handleAdminLogin(req ,res)
                
             }
             else{
-               res.redirect('/'); //password Mismatch -message to be given
+               res.render('adminLogin' ,{message:"Incorrect Password"}); //password Mismatch -message to be given
    
             }
         }

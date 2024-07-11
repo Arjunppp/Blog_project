@@ -45,3 +45,8 @@ body
     gap: 20px;
 
 }
+
+#errorData
+{
+    color: red;
+}

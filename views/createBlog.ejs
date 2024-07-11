@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/blog/post" method="POST">
+        <label for="blogHeading">Title</label>
+        <input type="text" id="blogHeading" name="title">
+        <label for="blogContent">Content</label>
+        <textarea name="content" id="blogContent" ></textarea>
+        <button type="submit">CREATE</button>
+    </form>
+
+<% if(locals.message) { %>
+    <h2 id="errorData"><%= message %></h2>
+    <script>
+        setTimeout(()=> 
+    {
+        document.getElementById('errorData').innerHTML ='';
+    } ,2000);
+    </script>
+
+
+
+    <% } %>
+    
+</body>
+</html>

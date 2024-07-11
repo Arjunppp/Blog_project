@@ -20,7 +20,17 @@
                 <input type="password" name="password" id="password">
                 <button type="submit">Login</button>
             </form>
-            
+            <% if(locals.message) { %>
+                <h2 id="errorData"><%= message %></h2>
+                <script>
+                    setTimeout(() => 
+                {
+                   document.getElementById('errorData').innerHTML =''; 
+                } ,2000);
+                </script>
+
+
+            <% } %>
         </div>
 
     </div>
