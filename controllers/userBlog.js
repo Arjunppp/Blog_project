@@ -1,4 +1,4 @@
-import { createBlog, getAllBlog, getAllMyBlogs, getViewBLog, getDeleteBlog } from "../services/userServices.js";
+import { createBlog, getAllBlog, getAllMyBlogs, getViewBLog, getDeleteBlog ,getUpdatedBlog} from "../services/userServices.js";
 
 async function blogPage(req, res) {
     let allBlog = await getAllBlog();
@@ -60,7 +60,7 @@ async function handleDeleteBlog(req, res) {
     const blogId = (req.params.id);
 
     await getDeleteBlog(blogId);
-    await handleGetAllMyBlogs(req, res);
+   res.redirect('/blog');
 };
 
 
@@ -75,5 +75,16 @@ async function handleViewBlog(req, res) {
 
 
 
+};
+
+
+async function handleUpdateBlog(req ,res)
+{
+const updatedData = req.body;
+let result = await getUpdatedBlog(updatedData);
+
+res.redirect('/blog');
 }
-export { blogPage, blogLogout, blogGetCreate, blogSave, handleGetAllMyBlogs, handleDeleteBlog, handleViewBlog }
+
+
+export { blogPage, blogLogout, blogGetCreate, blogSave, handleGetAllMyBlogs, handleDeleteBlog, handleViewBlog , handleUpdateBlog }

@@ -70,4 +70,17 @@ async function getDeleteBlog(blogId)
     return result;
 }
 
-export {registerUser , getUserByUsername ,createBlog ,getAllBlog ,getAllMyBlogs , getViewBLog , getDeleteBlog};
+async function getUpdatedBlog(data)
+{
+    const { blogId, title, content } = data;
+    const updateFields = { title, content };
+    const result = await Blog.findByIdAndUpdate(
+        blogId, 
+        { $set: updateFields },
+        { new: true, runValidators: true }
+    );
+    
+    
+}
+
+export {registerUser , getUserByUsername ,createBlog ,getAllBlog ,getAllMyBlogs , getViewBLog , getDeleteBlog ,getUpdatedBlog};
