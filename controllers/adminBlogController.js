@@ -1,4 +1,4 @@
-import { getAllUsers } from "../services/adminServices.js";
+import { getAllUsers , updateUser , getDeleteUser } from "../services/adminServices.js";
 import { getAllMyBlogs } from "../services/userServices.js";
 
 
@@ -37,4 +37,24 @@ async function handlegetTheUser(req, res) {
     res.render('adminViewUser' ,{requiredUser});
 }
 
-export { handleAdminMainPage, handleAdminLogOut, handleGetAllUserPost, handlegetTheUser };
+
+async function handleUpdateUser(req ,res)
+{
+    const userId = req.params.id;
+    const {username , email , password} = req.body;
+    console.log(userId, username ,email , password);
+    let result = await updateUser(userId, username ,email , password);
+    res.send('OK');
+    
+};
+
+
+
+
+ export async function handleDeleteUser(req, res)
+{
+    const userId = req.params.id;
+    let result = await getDeleteUser(userId);
+    res.send('OK');
+}
+export { handleAdminMainPage, handleAdminLogOut, handleGetAllUserPost, handlegetTheUser ,handleUpdateUser };
