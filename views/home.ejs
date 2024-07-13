@@ -28,18 +28,19 @@
             </form>
             <a href="/register">Sign Up</a>
         </div>
+        <% if (locals.message) { %>
+            <h2 id="errorData">
+                <%= message %>
+            </h2>
+            <script>
+                setTimeout(() => {
+                    document.getElementById('errorData').innerText = '';
+                }, 2000);
+            </script>
+            <% } %>
     </div>
 
-    <% if (locals.message) { %>
-        <h2 id="errorData">
-            <%= message %>
-        </h2>
-        <script>
-            setTimeout(() => {
-                document.getElementById('errorData').innerText = '';
-            }, 2000);
-        </script>
-        <% } %>
+   
 
 
 
