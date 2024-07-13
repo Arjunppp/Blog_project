@@ -8,12 +8,17 @@ import 'dotenv/config';
 import { userBlog } from './routes/userBlogs.js';
 import { adminBlogRouter } from './routes/adminBlogRouter.js';
 import { adminAuth } from './middlewares/adminAuthMiddleware.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 const port = process.env.PORT;
 const app =express();
 
-
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +32,7 @@ app.use('/' ,userRouter);
 
 app.use('/admin' , adminRouter);
 
-app.use('/blog' , userAuth , userBlog);
+app.use('/blog' , userAuth , userBlog);  //userAuth
 
 
 app.use('/admin/blog' , adminAuth ,adminBlogRouter);    ///Add an middleware where others cant acess

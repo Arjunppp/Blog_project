@@ -55,6 +55,20 @@ async function handleUpdateUser(req ,res)
 {
     const userId = req.params.id;
     let result = await getDeleteUser(userId);
-    res.send('OK');
+    if(result.length == 0)
+    {
+        res.send('Sucess');
+    }
+    else
+    {
+        res.send('failed');
+    }
 }
+
+
+export async function handleGetUserBlog(req , res)
+{
+    console.log(req);
+}
+
 export { handleAdminMainPage, handleAdminLogOut, handleGetAllUserPost, handlegetTheUser ,handleUpdateUser };

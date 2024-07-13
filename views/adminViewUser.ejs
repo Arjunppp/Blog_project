@@ -51,9 +51,11 @@
                                 body: JSON.stringify(userData)
                             });
 
-                            if (response) {
-                                location.reload();
-                            }
+                            if (response.ok) {
+                                window.location.href = 'http://localhost:3000/admin/blog';
+                            };
+
+                            alert("user updated sucessfullly");
 
                         })
 
@@ -61,7 +63,11 @@
                         document.getElementById('delete-button').addEventListener('click', async () => {
                             let userId = document.getElementById('delete-button').getAttribute('data-emp-id');
                             let response = await fetch(`http://localhost:3000/admin/blog/${userId}`, { method: 'DELETE' });
-                           
+                            if (response.ok) {
+                                window.location.href = 'http://localhost:3000/admin/blog';
+                            };
+                            alert("user deleted sucessfullly");
+
                         });
                     </script>
 

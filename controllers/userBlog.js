@@ -41,6 +41,19 @@ async function blogSave(req, res) {
 
 
 async function handleGetAllMyBlogs(req, res) {
+   if(req.params.id)
+   {
+    const userId = req.params.id;
+    const myBlogs = await getAllMyBlogs(userId);
+    if (!myBlogs || myBlogs.length == 0) {
+        res.render('myBlog', { message: "You have no Blogs to view" });
+    }
+    else {
+        res.render('myBlog', { myBlogs });
+    }
+
+   }
+   else{
     const userId = req.user._id;
     const myBlogs = await getAllMyBlogs(userId);
     if (!myBlogs || myBlogs.length == 0) {
@@ -49,6 +62,8 @@ async function handleGetAllMyBlogs(req, res) {
     else {
         res.render('myBlog', { myBlogs });
     }
+   }
+    
 
     //create a service to get all the post from BLogs where user id is this
 };
@@ -60,7 +75,13 @@ async function handleDeleteBlog(req, res) {
     const blogId = (req.params.id);
 
     await getDeleteBlog(blogId);
-   res.redirect('/blog');
+   if(req.user.role =='USER')
+   {
+    res.redirect('/blog');
+   }
+   else{
+    res.redirect('/admin/blog')
+   }
 };
 
 
@@ -83,7 +104,13 @@ async function handleUpdateBlog(req ,res)
 const updatedData = req.body;
 let result = await getUpdatedBlog(updatedData);
 
-res.redirect('/blog');
+if(req.user.role =='USER')
+    {
+     res.redirect('/blog');
+    }
+    else{
+     res.redirect('/admin/blog')
+    }
 }
 
 
