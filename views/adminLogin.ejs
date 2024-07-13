@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/styles.css">
+    <link rel="stylesheet" href="/public/styles.css">
 </head>
+
 <body>
-    <div class="home-main-div">
-        <div class="head-div">
-        <h1>Blogs</h1> 
+    <div class="login-container">
+        <div class="login-form" id="loginForm">
+            <h1>Blogs</h1>
             <a href="/">user Login</a>
-        </div>
-        <div class="home-sub-div">
             <h4>Admin Login</h4>
-            
             <form action="/admin/login" method="POST" id="login-form">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username">
@@ -23,18 +22,20 @@
                 <button type="submit">Login</button>
             </form>
             <% if(locals.message) { %>
-                <h2 id="errorData"><%= message %></h2>
+                <h2 id="errorData">
+                    <%= message %>
+                </h2>
                 <script>
-                    setTimeout(() => 
-                {
-                   document.getElementById('errorData').innerHTML =''; 
-                } ,2000);
+                    setTimeout(() => {
+                        document.getElementById('errorData').innerHTML = '';
+                    }, 2000);
                 </script>
 
 
-            <% } %>
-        </div>
+                <% } %>
 
-    </div>
+
+        </div>
 </body>
+
 </html>

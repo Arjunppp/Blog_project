@@ -106,7 +106,7 @@ async function sendPutRequest(event)
         body: JSON.stringify(editedBlog)
     });
     if (response.redirected) {
-        window.location.href = response.url; 
+        window.location.reload(); 
     } else {
         const html = await response.text();
         document.body.innerHTML = html;

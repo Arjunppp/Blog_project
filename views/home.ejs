@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/styles.css">
+    <link rel="stylesheet" href="/public/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
+
 <body>
-    <div class="home-main-div">
-        <div class="head-div">
-        <h1>Blogs</h1>
-        <a href="/admin">Admin Login</a>
-        </div>
-        <div class="home-sub-div">
+    <div class="login-container">
+        <div class="login-form" id="loginForm">
+            <h1>Blogs</h1>
+            <a  href="/admin">Admin Login</a>
             <h4>User Login</h4>
             <form action="/login" method="POST" id="login-form">
                 <label for="username">Username</label>
@@ -23,16 +28,23 @@
             </form>
             <a href="/register">Sign Up</a>
         </div>
-        <% if (locals.message) { %>
-            <h2 id="errorData"><%= message %></h2>
-            <script>
-                setTimeout(() => {
-                    document.getElementById('errorData').innerText = '';
-                }, 2000);
-            </script>
-        <% } %>
-        
-
     </div>
+
+    <% if (locals.message) { %>
+        <h2 id="errorData">
+            <%= message %>
+        </h2>
+        <script>
+            setTimeout(() => {
+                document.getElementById('errorData').innerText = '';
+            }, 2000);
+        </script>
+        <% } %>
+
+
+
+
+
 </body>
+
 </html>
