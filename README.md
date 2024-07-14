@@ -8,19 +8,19 @@ This Node.js application provides a robust and user-friendly platform for creati
 
 1. Clone the repository:
    ```bash
-   git clone https://<your-github-username>/Blog_project
+   git clone https://github.com/Arjunppp/Blog_project
   
-2. Navigate to the project directory:
-	cd Blog_project
-3. Install dependencies
-	npm install
+2. Navigate to the project directory--
+	"cd Blog_project"
+3. Install dependencies--
+	"npm install"
 
 ## Usage
 	
-1. Start the application
+1. Start the application--
 	node index.js
-2.Acess the application in your browser
-	visit http://localhost:3000
+2. Acess the application in your browser
+	visit-- http://localhost:3000
 	
 ## Features
 
