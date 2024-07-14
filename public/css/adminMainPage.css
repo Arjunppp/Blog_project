@@ -1,0 +1,96 @@
+/* Global styles */
+* {
+    font-family: "Outfit", sans-serif !important;
+    color: white !important;
+    /* Default font color */
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100vh !important;
+    background: url(/public/pics/bg1.jpeg) no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 2px solid rgba(255, 255, 255, .2) !important;
+    backdrop-filter: blur(4px) !important;
+    border-radius: 14px !important;
+    padding: 30px 40px !important;
+}
+
+a {
+    color: white !important;
+    text-decoration: underline !important;
+    transition: 0.4s ease-in-out !important;
+}
+
+a:hover {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+table.table {
+    color: white !important;
+    background-color: transparent !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+th,
+td {
+    border: 1px solid rgba(255, 255, 255, .2) !important;
+    padding: 10px !important;
+    text-align: left !important;
+}
+
+th {
+    background: rgba(255, 255, 255, .1) !important;
+}
+
+td {
+    background: rgba(0, 0, 0, .5) !important;
+}
+
+button {
+    background-color: #02a152 !important;
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 5px 10px !important;
+    transition: 0.4s ease-in-out !important;
+}
+
+button:hover {
+    background-color: #45a049 !important;
+}
+
+form {
+    display: inline-block !important;
+}
+
+.logout-button {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    background-color: #02a152 !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    text-decoration: none !important;
+    font-size: 16px !important;
+    transition: background-color 0.4s ease-in-out !important;
+}
+
+.logout-button:hover {
+    background-color: #45a049 !important;
+}

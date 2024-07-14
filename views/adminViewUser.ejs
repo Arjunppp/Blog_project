@@ -1,18 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Global styles */
+        * {
+            font-family: "Outfit", sans-serif !important;
+            color: white !important; /* Default font color */
+        }
 
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            min-height: 100vh !important;
+            background: url(/public/pics/bg1.jpeg) no-repeat !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+
+        .form-container {
+            width: 100% !important;
+            max-width: 500px !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+            border: 2px solid rgba(255, 255, 255, .2) !important;
+            backdrop-filter: blur(4px) !important;
+            border-radius: 14px !important;
+            padding: 30px 40px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        label {
+            margin-bottom: 5px !important;
+        }
+
+        input, button {
+            margin-bottom: 15px !important;
+            border: 2px solid rgba(255, 255, 255, .2) !important;
+            border-radius: 60px !important;
+            background: transparent !important;
+            color: white !important;
+            text-indent: 15px !important;
+            font-size: 15px !important;
+        }
+
+        input::placeholder {
+            color: white !important;
+            text-indent: 15px !important;
+        }
+
+        button {
+            background-color: #02a152 !important;
+            border: none !important;
+            cursor: pointer !important;
+            padding: 10px 20px !important;
+            transition: background-color 0.4s ease-in-out !important;
+        }
+
+        button:hover {
+            background-color: #45a049 !important;
+        }
+
+        .row > div {
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .row > div > label {
+            flex: 1 !important;
+        }
+
+        .row > div > input {
+            flex: 2 !important;
+        }
+    </style>
+</head>
 <body>
     <% if(locals.requiredUser) { %>
         <% requiredUser.forEach((each)=> { %>
-            <form id="user-form" class="d-flex flex-column gap-2 p-5">
+            <form id="user-form" class="form-container d-flex flex-column gap-2">
                 <div class="username-div row d-flex">
                     <label for="username" class="col-4">Username:</label>
                     <input type="text" id="username" class="col-8" name="username" value="<%= each.username %>">
@@ -26,55 +97,46 @@
                     <input type="password" id="password" class="col-8" name="password" placeholder="Type your password">
                 </div>
                 <div class="button-div row d-flex justify-content-center gap-3">
-                    <button type="button" data-emp-id="<%= each._id %>" class="btn btn-primary col-4"
-                        id="edit-button">Edit</button>
-                    <button type="button" data-emp-id="<%= each._id %>" class="btn btn-primary col-4"
-                        id="delete-button">Delete</button>
+                    <button type="button" data-emp-id="<%= each._id %>" class="btn btn-primary col-4" id="edit-button">Edit</button>
+                    <button type="button" data-emp-id="<%= each._id %>" class="btn btn-primary col-4" id="delete-button">Delete</button>
                 </div>
             </form>
-            <% }) %>
-                <% } %>
+        <% }) %>
+    <% } %>
 
-                    <script>
-                        document.getElementById('edit-button').addEventListener('click', async () => {
-                            let username = document.getElementById('username').value;
-                            let password = document.getElementById('password').value;
-                            let email = document.getElementById('email').value;
-                            let userId = document.getElementById('edit-button').getAttribute('data-emp-id');
-                            console.log(username, password, email, userId);
-                            let userData = { username, email, password };
-                            let response = await fetch(`http://localhost:3000/admin/blog/${userId}`, {
-                                method: 'PUT',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(userData)
-                            });
+    <script>
+        document.getElementById('edit-button').addEventListener('click', async () => {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            let email = document.getElementById('email').value;
+            let userId = document.getElementById('edit-button').getAttribute('data-emp-id');
+            console.log(username, password, email, userId);
+            let userData = { username, email, password };
+            let response = await fetch(`http://localhost:3000/admin/blog/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
 
-                            if (response.ok) {
-                                window.location.href = 'http://localhost:3000/admin/blog';
-                            };
+            if (response.ok) {
+                window.location.href = 'http://localhost:3000/admin/blog';
+            };
 
-                            alert("user updated sucessfullly");
+            alert("user updated successfully");
+        })
 
-                        })
+        document.getElementById('delete-button').addEventListener('click', async () => {
+            let userId = document.getElementById('delete-button').getAttribute('data-emp-id');
+            let response = await fetch(`http://localhost:3000/admin/blog/${userId}`, { method: 'DELETE' });
+            if (response.ok) {
+                window.location.href = 'http://localhost:3000/admin/blog';
+            };
+            alert("user deleted successfully");
+        });
+    </script>
 
-
-                        document.getElementById('delete-button').addEventListener('click', async () => {
-                            let userId = document.getElementById('delete-button').getAttribute('data-emp-id');
-                            let response = await fetch(`http://localhost:3000/admin/blog/${userId}`, { method: 'DELETE' });
-                            if (response.ok) {
-                                window.location.href = 'http://localhost:3000/admin/blog';
-                            };
-                            alert("user deleted sucessfullly");
-
-                        });
-                    </script>
-
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                        crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-
 </html>
