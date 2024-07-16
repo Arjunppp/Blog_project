@@ -60,6 +60,7 @@ async function blogSave(req, res) {
 
 async function handleGetAllMyBlogs(req, res) {
     try {
+        console.log('hiiiii');
         if (req.params.id) {
             const userId = req.params.id;
             const myBlogs = await getAllMyBlogs(userId);
@@ -132,6 +133,7 @@ async function handleViewBlog(req, res) {
 async function handleUpdateBlog(req, res) {
     try {
         const updatedData = req.body;
+        
         let result = await getUpdatedBlog(updatedData);
 
         if (req.user.role == 'USER') {

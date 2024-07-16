@@ -101,8 +101,21 @@ async function getDeleteBlog(blogId) {
 }
 
 async function getUpdatedBlog(data) {
-  
+  try
+  {
+    const { blogId, title, content } = data;
+    const updateFields = { title, content };
+    const result = await Blog.findByIdAndUpdate(
+        blogId,
+        { $set: updateFields },
+        { new: true, runValidators: true }
+    );
 
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
 
 }
 

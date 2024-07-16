@@ -89,6 +89,7 @@ async function sendPutRequest(event) {
     const content = document.getElementById('edit-content').value;
     console.log(title, content);
     const editedBlog = { blogId, title, content };
+
     let sendURL = '';
     if (window.location.href.toLowerCase().includes('admin')) { sendURL = adminURL }
     else {
@@ -96,12 +97,12 @@ async function sendPutRequest(event) {
     }
     if (title == '' || content == '') {
         document.getElementById('Error_message').innerText = 'Title and content are mandatory';
-       setTimeout(() => 
-    {
-        document.getElementById('Error_message').innerText = '';
-    } , 1500);
+        setTimeout(() => {
+            document.getElementById('Error_message').innerText = '';
+        }, 1500);
     }
     else {
+        console.log(sendURL, blogId);
         let response = await fetch(`${sendURL}/${blogId}`, {
             method: "PUT",
             headers: {
@@ -109,8 +110,8 @@ async function sendPutRequest(event) {
             },
             body: JSON.stringify(editedBlog)
         });
-        if (response.redirected) {
-            window.location.reload();
+         if (response.redirected) {
+             window.location.reload();
         } else {
             const html = await response.text();
             document.body.innerHTML = html;
