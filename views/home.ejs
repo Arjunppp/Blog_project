@@ -16,28 +16,29 @@
 <body>
     <div class="login-container">
         <div class="login-form" id="loginForm">
+            <% if (locals.message) { %>
+                <h2 id="errorData">
+                    <%= message %>
+                </h2>
+                <script>
+                    setTimeout(() => {
+                        document.getElementById('errorData').innerText = '';
+                    }, 2000);
+                </script>
+                <% } %>
             <h1>Blogs</h1>
             <a  href="/admin">Admin Login</a>
             <h4>User Login</h4>
             <form action="/login" method="POST" id="login-form">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" required>
                 <label for="password">password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
                 <button type="submit">Login</button>
             </form>
             <a href="/register">Sign Up</a>
         </div>
-        <% if (locals.message) { %>
-            <h2 id="errorData">
-                <%= message %>
-            </h2>
-            <script>
-                setTimeout(() => {
-                    document.getElementById('errorData').innerText = '';
-                }, 2000);
-            </script>
-            <% } %>
+      
     </div>
 
    

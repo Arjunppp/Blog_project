@@ -13,12 +13,13 @@ async function registerUser(data)
             password,
             email
         });
-        const result = await user.save();
-        return result;
+         await user.save();
+         return {message:"Sucess"};
+
     }
     catch(err)
     {
-        console.log(err);
+        return { Error: { code: err.code, keyValue: err.keyValue } };
     }
     
 

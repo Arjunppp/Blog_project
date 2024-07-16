@@ -86,16 +86,13 @@
             <form id="user-form" class="form-container d-flex flex-column gap-2">
                 <div class="username-div row d-flex">
                     <label for="username" class="col-4">Username:</label>
-                    <input type="text" id="username" class="col-8" name="username" value="<%= each.username %>">
+                    <input type="text" id="username" class="col-8" name="username" value="<%= each.username %>" required>
                 </div>
                 <div class="email-div row d-flex">
                     <label for="email" class="col-4">Email:</label>
-                    <input type="email" class="col-8" id="email" name="email" value="<%= each.email %>">
+                    <input type="email" class="col-8" id="email" name="email" value="<%= each.email %>" required>
                 </div>
-                <div class="password-div row d-flex">
-                    <label for="password" class="col-4">Password:</label>
-                    <input type="password" id="password" class="col-8" name="password" placeholder="Type your password">
-                </div>
+                
                 <div class="button-div row d-flex justify-content-center gap-3">
                     <button type="button" data-emp-id="<%= each._id %>" class="btn btn-primary col-4" id="edit-button">Edit</button>
                     <button type="button" data-emp-id="<%= each._id %>" class="btn btn-primary col-4" id="delete-button">Delete</button>
@@ -107,11 +104,11 @@
     <script>
         document.getElementById('edit-button').addEventListener('click', async () => {
             let username = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
+          
             let email = document.getElementById('email').value;
             let userId = document.getElementById('edit-button').getAttribute('data-emp-id');
-            console.log(username, password, email, userId);
-            let userData = { username, email, password };
+           
+            let userData = { username, email};
             let response = await fetch(`http://localhost:3000/admin/blog/${userId}`, {
                 method: 'PUT',
                 headers: {

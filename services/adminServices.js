@@ -11,13 +11,12 @@ export async function getAllUsers()
 }
 
 
-export async function updateUser(userId, username ,email , password)
+export async function updateUser(userId, username ,email )
 {
-    let bcryptPass = await createHashPassword(password);
+    // let bcryptPass = await createHashPassword(password);
     const updatedUser = await User.findByIdAndUpdate(userId, {
         username: username,
-        email: email,
-        password: bcryptPass
+        email: email
     }, { new: true });
 
     return updatedUser

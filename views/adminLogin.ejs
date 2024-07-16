@@ -11,16 +11,7 @@
 <body>
     <div class="login-container">
         <div class="login-form" id="loginForm">
-            <h1>Blogs</h1>
-            <a href="/">user Login</a>
-            <h4>Admin Login</h4>
-            <form action="/admin/login" method="POST" id="login-form">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username">
-                <label for="password">password</label>
-                <input type="password" name="password" id="password">
-                <button type="submit">Login</button>
-            </form>
+
             <% if(locals.message) { %>
                 <h2 id="errorData">
                     <%= message %>
@@ -33,6 +24,17 @@
 
 
                 <% } %>
+                    <h1>Blogs</h1>
+                    <a href="/">user Login</a>
+                    <h4>Admin Login</h4>
+                    <form action="/admin/login" method="POST" id="login-form">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" required>
+                        <label for="password">password</label>
+                        <input type="password" name="password" id="password" required>
+                        <button type="submit">Login</button>
+                    </form>
+
 
 
         </div>

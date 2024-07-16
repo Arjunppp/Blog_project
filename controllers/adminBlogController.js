@@ -41,9 +41,9 @@ async function handlegetTheUser(req, res) {
 async function handleUpdateUser(req ,res)
 {
     const userId = req.params.id;
-    const {username , email , password} = req.body;
-    console.log(userId, username ,email , password);
-    let result = await updateUser(userId, username ,email , password);
+    const {username , email } = req.body;
+    console.log(userId, username ,email );
+    let result = await updateUser(userId, username ,email );
     res.send('OK');
     
 };

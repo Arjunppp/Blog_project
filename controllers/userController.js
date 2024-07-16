@@ -3,18 +3,42 @@ import { comparePassword } from "../utils/bcryptUtil.js";
 import { generateToken } from "../utils/jwtUtils.js";
 
 async function handleRootPage(req, res) {
-    res.render('home');
+  try
+  {
+    res.status(200).render('home'); // res.render('signUp');
+  }
+  catch(error)
+  {
+    console.error(error);
+  }
 };
 
 async function handleRegisterGet(req, res) {
-    res.render('signUp');
+    try
+    {
+      res.status(200).render('signUp'); 
+    }
+    catch(error)
+    {
+      console.error(error);
+    }
 }
 
 async function handleRegisterPost(req, res) {
     try {
         const userData = req.body;
-        const result = await registerUser(userData);
-        res.render('home' ,{message :"User Created , Please Login"});
+        let result =  await registerUser(userData);
+        if(result.hasOwnProperty('message'))
+        {
+            res.render('home' ,{message :"User Created , Please Login"});
+        }
+        if(result.hasOwnProperty('Error'))
+        {
+         
+            res.render('signUp' ,{message :`${Object.keys(result.Error.keyValue)[0]} already exists`});
+        }
+       
+      
         }
     catch (err) {
         console.log(err);
