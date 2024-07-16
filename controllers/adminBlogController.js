@@ -3,17 +3,33 @@ import { getAllMyBlogs } from "../services/userServices.js";
 
 
 async function handleAdminMainPage(req, res) {
-    const result = await getAllUsers();
+    try
+    {
+        const result = await getAllUsers();
     res.render('adminBlog', { result });
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
 };
 
 async function handleAdminLogOut(req, res) {
-    console.log('Hello');
+    
+  try
+  {
     res.cookie('AdminId', '', { maxAge: 1 }).redirect('/admin');
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
 }
 
 
 async function handleGetAllUserPost(req, res) {
+   try
+   {
     const userId = req.params.id;
     const allBlogs = await getAllMyBlogs(userId);
     if (allBlogs.length == 0) {
@@ -23,11 +39,17 @@ async function handleGetAllUserPost(req, res) {
     else {
         res.render('adminViewAll', { allBlogs });
     }
+   }
+   catch(err)
+   {
+    console.log(err);
+   }
 
 }
 
 
 async function handlegetTheUser(req, res) {
+  try{
     const userId = req.params.id;
     let users = await getAllUsers();
     const requiredUser = users.filter((each) => {
@@ -35,16 +57,27 @@ async function handlegetTheUser(req, res) {
     });
     console.log(requiredUser);
     res.render('adminViewUser' ,{requiredUser});
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
 }
 
 
 async function handleUpdateUser(req ,res)
 {
-    const userId = req.params.id;
+    try{
+        const userId = req.params.id;
     const {username , email } = req.body;
     console.log(userId, username ,email );
     let result = await updateUser(userId, username ,email );
     res.send('OK');
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
     
 };
 
@@ -53,6 +86,8 @@ async function handleUpdateUser(req ,res)
 
  export async function handleDeleteUser(req, res)
 {
+   try
+   {
     const userId = req.params.id;
     let result = await getDeleteUser(userId);
     if(result.length == 0)
@@ -63,12 +98,14 @@ async function handleUpdateUser(req ,res)
     {
         res.send('failed');
     }
+   }
+   catch(err)
+   {
+    console.log(err);
+   }
 }
 
 
-export async function handleGetUserBlog(req , res)
-{
-    console.log(req);
-}
+
 
 export { handleAdminMainPage, handleAdminLogOut, handleGetAllUserPost, handlegetTheUser ,handleUpdateUser };

@@ -7,17 +7,30 @@ const secretKey = process.env.SECRET_KEY ;
 
 
 function generateToken(data)
-{   const payload = data.toObject();
+{   try
+    {
+        const payload = data.toObject();
     let token =  jwt.sign(payload , secretKey);
     return token;
 
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
 
 };
 
 function verifyUser(token)
 {
-    let isMatch =  jwt.verify(token ,secretKey);
+    try{
+        let isMatch =  jwt.verify(token ,secretKey);
     return isMatch;
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
 };
 
 

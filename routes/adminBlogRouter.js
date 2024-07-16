@@ -1,7 +1,7 @@
 
 
 import express from 'express';
-import { handleAdminMainPage ,handleAdminLogOut ,handleGetAllUserPost ,handlegetTheUser ,handleUpdateUser, handleDeleteUser , handleGetUserBlog} from '../controllers/adminBlogController.js';
+import { handleAdminMainPage ,handleAdminLogOut  ,handlegetTheUser ,handleUpdateUser, handleDeleteUser } from '../controllers/adminBlogController.js';
 import { handleDeleteBlog, handleGetAllMyBlogs, handleUpdateBlog, handleViewBlog } from '../controllers/userBlog.js';
 
 

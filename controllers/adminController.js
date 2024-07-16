@@ -10,6 +10,8 @@ async function handleAdmin(req ,res)
 
 async function handleAdminLogin(req ,res)
 {
+   try
+   {
     const userData = req.body;
   
     const user = await getUserByUsername(userData.username);
@@ -31,6 +33,11 @@ async function handleAdminLogin(req ,res)
    
             }
         }
+   }
+   catch(err)
+   {
+    console.log(err);
+   }
 
 }
 
