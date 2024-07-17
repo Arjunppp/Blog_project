@@ -25,11 +25,11 @@ async function handleRegisterPost(req, res) {
     const userData = req.body;
     let result = await registerUser(userData);
     if (result.hasOwnProperty('message')) {
-      res.render('home', { message: "User Created , Please Login" });
+      res.status(200).render('home', { message: "User Created , Please Login" });
     }
     if (result.hasOwnProperty('Error')) {
 
-      res.render('signUp', { message: `${Object.keys(result.Error.keyValue)[0]} already exists` });
+      res.status(409).render('signUp', { message: `${Object.keys(result.Error.keyValue)[0]} already exists` });
     }
 
 
@@ -46,18 +46,18 @@ async function handleLogin(req, res) {
     let user = await getUserByUsername(username);
     if (!user) {
 
-      res.render('home', { message: "Employee Not found" }); //redirect with message user not found
+      res.status(404).render('home', { message: "Employee Not found" }); //redirect with message user not found
     }
     else {
 
       let result = await comparePassword(password, user.password)
       if (result) {
         let token = generateToken(user);
-        res.cookie('userId', token).redirect('/blog');
+        res.status(200).cookie('userId', token).redirect('/blog');
 
       }
       else {
-        res.render('home', { message: "Incorrect Password" }); //password Mismatch -message to be given
+        res.status(401).render('home', { message: "Incorrect Password" }); //password Mismatch -message to be given
 
       }
     }

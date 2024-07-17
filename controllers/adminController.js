@@ -4,7 +4,7 @@ import { generateToken } from "../utils/jwtUtils.js";
 
 async function handleAdmin(req ,res)
 {
-    res.render('adminLogin');
+    res.status(200).render('adminLogin');
 
 }
 
@@ -17,7 +17,7 @@ async function handleAdminLogin(req ,res)
     const user = await getUserByUsername(userData.username);
     if(!user || user.role != 'ADMIN')
         {
-           res.render('adminLogin' , {message:"Admin not found"}); 
+           res.status(409).render('adminLogin' , {message:"Admin not found"}); 
         }
         else{
           
@@ -25,11 +25,11 @@ async function handleAdminLogin(req ,res)
             if(result)
             {
                let token =  generateToken(user);
-               res.cookie('AdminId' ,token).redirect('/admin/blog');
+               res.status(200).cookie('AdminId' ,token).redirect('/admin/blog');
                
             }
             else{
-               res.render('adminLogin' ,{message:"Incorrect Password"}); //password Mismatch -message to be given
+               res.status(401).render('adminLogin' ,{message:"Incorrect Password"}); //password Mismatch -message to be given
    
             }
         }

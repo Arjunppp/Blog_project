@@ -65,10 +65,10 @@ async function handleGetAllMyBlogs(req, res) {
             const userId = req.params.id;
             const myBlogs = await getAllMyBlogs(userId);
             if (!myBlogs || myBlogs.length == 0) {
-                res.render('myBlog', { message: "You have no Blogs to view" });
+                res.status(200).render('myBlog', { message: "You have no Blogs to view" });
             }
             else {
-                res.render('myBlog', { myBlogs });
+                res.status(200).render('myBlog', { myBlogs });
             }
 
         }
@@ -76,10 +76,10 @@ async function handleGetAllMyBlogs(req, res) {
             const userId = req.user._id;
             const myBlogs = await getAllMyBlogs(userId);
             if (!myBlogs || myBlogs.length == 0) {
-                res.render('myBlog', { message: "You have no Blogs to view" });
+                res.status(200).render('myBlog', { message: "You have no Blogs to view" });
             }
             else {
-                res.render('myBlog', { myBlogs });
+                res.status(200).render('myBlog', { myBlogs });
             }
         }
 
