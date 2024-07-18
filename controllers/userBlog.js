@@ -1,37 +1,37 @@
 import { createBlog, getAllBlog, getAllMyBlogs, getViewBLog, getDeleteBlog, getUpdatedBlog } from "../services/userServices.js";
 
-async function blogPage(req, res) {
+export async function blogPage(req, res ,next) {
     try {
         let allBlog = await getAllBlog();
         const UserId = req.user._id;
         res.render('blog', { allBlog, UserId });
     }
     catch (err) {
-        console.log(err);
+           next(err);
     }
 };
 
-async function blogLogout(req, res) {
+export async function blogLogout(req, res ,next ) {
     try {
         res.cookie('userId', '', { maxAge: 1 }).redirect('/');
     }
     catch (err) {
-        console.log(err);
+        next(err)
     }
 
 }
 
-async function blogGetCreate(req, res) {
+export async function blogGetCreate(req, res ,next) {
     try {
         res.render('createBLog');
     }
     catch (err) {
-        console.log(err);
+        next(err);
     }
 }
 
 
-async function blogSave(req, res) {
+export async function blogSave(req, res ,next) {
 
     try {
         if (req.body.title == '' || req.body.content == '') {
@@ -52,13 +52,13 @@ async function blogSave(req, res) {
         }
     }
     catch (err) {
-        console.log(err);
+        next(err)
     }
 
 }
 
 
-async function handleGetAllMyBlogs(req, res) {
+export async function handleGetAllMyBlogs(req, res ,next) {
     try {
         console.log('hiiiii');
         if (req.params.id) {
@@ -85,7 +85,7 @@ async function handleGetAllMyBlogs(req, res) {
 
     }
     catch (err) {
-        console.log(err);
+        next(err);
     }
 
 };
@@ -93,7 +93,7 @@ async function handleGetAllMyBlogs(req, res) {
 
 
 
-async function handleDeleteBlog(req, res) {
+export async function handleDeleteBlog(req, res, next) {
     try {
         const blogId = (req.params.id);
 
@@ -106,13 +106,13 @@ async function handleDeleteBlog(req, res) {
         }
     }
     catch (err) {
-        console.log(err);
+        next(err);
     }
 };
 
 
 
-async function handleViewBlog(req, res) {
+export async function handleViewBlog(req, res ,next) {
     try {
         const blogId = (req.params.id);
         const userId = req.user._id;
@@ -122,7 +122,7 @@ async function handleViewBlog(req, res) {
         res.render('viewMyBLog', { BlogData })
     }
     catch (err) {
-        console.log(err);
+        next(err);
     }
 
 
@@ -130,7 +130,7 @@ async function handleViewBlog(req, res) {
 };
 
 
-async function handleUpdateBlog(req, res) {
+export async function handleUpdateBlog(req, res ,next) {
     try {
         const updatedData = req.body;
         
@@ -144,9 +144,8 @@ async function handleUpdateBlog(req, res) {
         }
     }
     catch (err) {
-        console.log(err);
+        next(err);
     }
 }
 
 
-export { blogPage, blogLogout, blogGetCreate, blogSave, handleGetAllMyBlogs, handleDeleteBlog, handleViewBlog, handleUpdateBlog }

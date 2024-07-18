@@ -3,7 +3,7 @@ import { createHashPassword } from "../utils/bcryptUtil.js";
 
 
 
-async function registerUser(data) {
+export async function registerUser(data) {
     try {
         let { username, email, password } = data;
         password = await createHashPassword(password);
@@ -23,19 +23,19 @@ async function registerUser(data) {
 
 };
 
-async function getUserByUsername(name) {
+export async function getUserByUsername(name) {
     try {
         let user = await User.findOne({ username: name });
         return user;
     }
     catch (Err) {
-        console.log(Err);
+     throw Err;
     }
 
 };
 
 
-async function createBlog(userId, title, content) {
+export async function createBlog(userId, title, content) {
     try {
         let blogdata = new Blog({
             userId,
@@ -48,23 +48,23 @@ async function createBlog(userId, title, content) {
     }
     catch(Err)
     {
-        console.log(Err);
+        throw Err;
     }
 }
 
-async function getAllBlog() {
+export async function getAllBlog() {
     try{
         const allBlogs = await Blog.find({});
     return allBlogs;
     }
     catch(err)
     {
-        console.log(err);
+       throw err;
     }
 };
 
 
-async function getAllMyBlogs(userId) {
+export async function getAllMyBlogs(userId) {
    try
    {
     const myBlogs = await Blog.find({ userId });
@@ -72,23 +72,23 @@ async function getAllMyBlogs(userId) {
    }
    catch(err)
    {
-    console.log(err);
+    throw err;
    }
 }
 
 
-async function getViewBLog(blogId) {
+export async function getViewBLog(blogId) {
    try{
     const requestedBlog = await Blog.find({ _id: blogId });
     return requestedBlog;
    }
    catch(err)
    {
-    console.log(err);
+   throw err;
    }
 }
 
-async function getDeleteBlog(blogId) {
+export async function getDeleteBlog(blogId) {
    try
    {
     let result = await Blog.findOneAndDelete({ _id: blogId });
@@ -96,11 +96,11 @@ async function getDeleteBlog(blogId) {
    }
    catch(err)
    {
-    console.log(err);
+   throw err;
    }
 }
 
-async function getUpdatedBlog(data) {
+export async function getUpdatedBlog(data) {
   try
   {
     const { blogId, title, content } = data;
@@ -114,9 +114,8 @@ async function getUpdatedBlog(data) {
   }
   catch(err)
   {
-    console.log(err);
+    throw err;
   }
 
 }
 
-export { registerUser, getUserByUsername, createBlog, getAllBlog, getAllMyBlogs, getViewBLog, getDeleteBlog, getUpdatedBlog };

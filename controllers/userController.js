@@ -2,25 +2,25 @@ import { registerUser, getUserByUsername } from "../services/userServices.js";
 import { comparePassword } from "../utils/bcryptUtil.js";
 import { generateToken } from "../utils/jwtUtils.js";
 
-async function handleRootPage(req, res) {
+export async function handleRootPage(req, res ,next) {
   try {
     res.status(200).render('home'); // res.render('signUp');
   }
   catch (error) {
-    console.error(error);
+    next(error);
   }
 };
 
-async function handleRegisterGet(req, res) {
+export async function handleRegisterGet(req, res ,next) {
   try {
     res.status(200).render('signUp');
   }
   catch (error) {
-    console.error(error);
+    next(error);
   }
 }
 
-async function handleRegisterPost(req, res) {
+export async function handleRegisterPost(req, res, next) {
   try {
     const userData = req.body;
     let result = await registerUser(userData);
@@ -35,12 +35,12 @@ async function handleRegisterPost(req, res) {
 
   }
   catch (err) {
-    console.log(err);
+   next(err)
   }
 
 }
 
-async function handleLogin(req, res) {
+export async function handleLogin(req, res, next) {
   try {
     const { username, password } = req.body;
     let user = await getUserByUsername(username);
@@ -63,11 +63,10 @@ async function handleLogin(req, res) {
     }
   }
   catch (err) {
-    console.log(err);
+   next(err);
   }
 
 
 }
 
 
-export { handleRootPage, handleRegisterGet, handleRegisterPost, handleLogin }

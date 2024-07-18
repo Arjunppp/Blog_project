@@ -2,13 +2,13 @@ import { getUserByUsername } from "../services/userServices.js";
 import { comparePassword } from "../utils/bcryptUtil.js";
 import { generateToken } from "../utils/jwtUtils.js";
 
-async function handleAdmin(req ,res)
+export async function handleAdmin(req ,res)
 {
     res.status(200).render('adminLogin');
 
 }
 
-async function handleAdminLogin(req ,res)
+export async function handleAdminLogin(req ,res ,next)
 {
    try
    {
@@ -36,9 +36,8 @@ async function handleAdminLogin(req ,res)
    }
    catch(err)
    {
-    console.log(err);
+    next(err)
    }
 
 }
 
-export {handleAdmin ,handleAdminLogin}

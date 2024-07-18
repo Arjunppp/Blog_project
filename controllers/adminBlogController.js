@@ -2,7 +2,7 @@ import { getAllUsers , updateUser , getDeleteUser } from "../services/adminServi
 import { getAllMyBlogs } from "../services/userServices.js";
 
 
-async function handleAdminMainPage(req, res) {
+export async function handleAdminMainPage(req, res ,next) {
     try
     {
         const result = await getAllUsers();
@@ -10,11 +10,11 @@ async function handleAdminMainPage(req, res) {
     }
     catch(err)
     {
-        console.log(err);
+       next(err);
     }
 };
 
-async function handleAdminLogOut(req, res) {
+export async function handleAdminLogOut(req, res ,next) {
     
   try
   {
@@ -22,12 +22,12 @@ async function handleAdminLogOut(req, res) {
   }
   catch(err)
   {
-    console.log(err);
+    next(err);
   }
 }
 
 
-async function handleGetAllUserPost(req, res) {
+export async function handleGetAllUserPost(req, res ,next) {
    try
    {
     const userId = req.params.id;
@@ -42,13 +42,13 @@ async function handleGetAllUserPost(req, res) {
    }
    catch(err)
    {
-    console.log(err);
+    next(err);
    }
 
 }
 
 
-async function handlegetTheUser(req, res) {
+export async function handlegetTheUser(req, res ,next) {
   try{
     const userId = req.params.id;
     let users = await getAllUsers();
@@ -60,12 +60,12 @@ async function handlegetTheUser(req, res) {
   }
   catch(err)
   {
-    console.log(err);
+    next(err);
   }
 }
 
 
-async function handleUpdateUser(req ,res)
+export async function handleUpdateUser(req ,res ,next)
 {
     try{
         const userId = req.params.id;
@@ -76,7 +76,7 @@ async function handleUpdateUser(req ,res)
     }
     catch(err)
     {
-        console.log(err);
+       next(err);
     }
     
 };
@@ -84,7 +84,7 @@ async function handleUpdateUser(req ,res)
 
 
 
- export async function handleDeleteUser(req, res)
+ export async function handleDeleteUser(req, res,next)
 {
    try
    {
@@ -101,11 +101,9 @@ async function handleUpdateUser(req ,res)
    }
    catch(err)
    {
-    console.log(err);
+    next(err);
    }
 }
 
 
 
-
-export { handleAdminMainPage, handleAdminLogOut, handleGetAllUserPost, handlegetTheUser ,handleUpdateUser };

@@ -13,12 +13,12 @@ export async function getAllUsers()
    }
    catch(err)
    {
-    console.log(err);
+    throw err;
    }
 }
 
 
-export async function updateUser(userId, username ,email )
+export async function updateUser(userId, username ,email  )
 {
     // let bcryptPass = await createHashPassword(password);
     try
@@ -32,13 +32,13 @@ export async function updateUser(userId, username ,email )
     }
     catch(err)
     {
-        console.log(err);
+      throw err;
 
     }
 };
 
 
-export async function getDeleteUser(userid)
+export async function getDeleteUser(userid )
 {
  try
  {
@@ -48,13 +48,13 @@ export async function getDeleteUser(userid)
  }
  catch(err)
  {
-    console.log(err);
+   throw err;
  }
 };
 
 
 
-async function getDeleteAllPostOfAUser(userid)
+export async function getDeleteAllPostOfAUser(userid)
 {
    try
    {
@@ -63,6 +63,6 @@ async function getDeleteAllPostOfAUser(userid)
    }
    catch(err)
    {
-    console.log(err);
+    throw err;
    }
 }
