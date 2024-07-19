@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      MONGO_URI: mongodb+srv://arjunmohanak:4lxNBWj4gi6HAgyy@blogmanagement.ibfwe6r.mongodb.net/blogSite?retryWrites=true&w=majority&appName=BlogManagement
+
